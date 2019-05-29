@@ -1,7 +1,7 @@
 # dependencies
 /react-frontend/node_modules
 /express-backend/node_modules
-/docker/data/db/
+/docker/
 
 # production, public directory containing temporarily saved images and QR Code
 /build
