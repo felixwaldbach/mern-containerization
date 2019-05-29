@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  frontend: 
+    build: .
+    volumes:
+      - "./react-frontend:/Users/felixwaldbach/Documents/projects/mern-containerization-root"
+    ports:
+      - "3031:3000"
+    environment:
+      REACT_APP_BACKEND_ADDRESS: http://localhost:3003
+    depends_on:
+      - backend
+  
+  backend:
+    build: .
+    volumes:
+      - "./express-backend:/Users/felixwaldbach/Documents/projects/mern-containerization-root"
+    ports:
+      - "3003:3000"
+    environment:
+      DB_ADDRESS: mongodb://db:27017
+    depends_on:
+      - db
+
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./docker/data/db:/data/db"
